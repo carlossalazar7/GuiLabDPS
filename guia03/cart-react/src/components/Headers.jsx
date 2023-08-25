@@ -11,19 +11,29 @@ export const Headers = ({
     const [active, setActive] = useState(false);
 
     const onCleanCart = () => {
-        setAllProducts([]);
-        setTotal(0);
-        setCountProducts(0);
+        let result = window.confirm("desea vaciar el carrito")
+
+        if (result === true) {
+            setAllProducts([]);
+            setTotal(0);
+            setCountProducts(0);
+        }
     };
 
     const onDeleteProduct = product => {
-        const results = allProducts.filter(
-            item => item.id !== product.id
-        );
 
-        setTotal(total - product.price * product.quantity);
-        setCountProducts(countProducts - product.quantity);
-        setAllProducts(results);
+        let result = window.confirm("desea eliminar el item")
+
+
+        if (result === true) {
+            const results = allProducts.filter(
+                item => item.id !== product.id
+            );
+
+            setTotal(total - product.price * product.quantity);
+            setCountProducts(countProducts - product.quantity);
+            setAllProducts(results);
+        }
 
 
     }
@@ -32,7 +42,7 @@ export const Headers = ({
             <h1>Tienda de Libros</h1>
             <div className="container-icon">
                 <div className="container-cart-icon" onClick={() => setActive(!active)}>
-                    <img src="https://e7.pngegg.com/pngimages/833/426/png-clipart-black-shoppingcart-icon-for-free-black-shopping-cart.png" alt="carrito" className="iconcart" />
+                    <img src="https://static.vecteezy.com/system/resources/previews/014/530/490/non_2x/shopping-cart-outline-icon-vector.jpg" width={50} height={50} alt="carrito" className="iconcart" />
                     <div className="count-products">
                         <span id="contador-productos"> {countProducts} </span>
                     </div>
@@ -47,7 +57,7 @@ export const Headers = ({
                                     <div className='cart-product'
                                         key={product.id}>
                                         <div className='info-cart-product'>
-                                        <img src={`${product.urlImage}`} alt="libro" width={50} height={50} />                                           
+                                            <img src={`${product.urlImage}`} alt="libro" width={50} height={50} />
                                             <span className='cantidad-producto-carrito'>
                                                 {product.quantity}
                                             </span>

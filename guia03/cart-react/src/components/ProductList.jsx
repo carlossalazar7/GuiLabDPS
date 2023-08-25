@@ -1,5 +1,7 @@
-import React from "react";
+import {React, useState} from "react";
 import { data } from "./data.js";
+import 'bootstrap/dist/css/bootstrap.css';
+import Modal from "./Modal.jsx";
 
 export const ProductList = ({
     allProducts,
@@ -25,21 +27,42 @@ export const ProductList = ({
         setAllProducts([...allProducts, product]);
     };
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [titleProduct, setTitleProduct] = useState("");
+    const [descriptionProduct, setDescriptionProduct] = useState("");
+    const [img, setImg] = useState("");
+
+    const onViewModal = product => {
+        setTitleProduct(product.title) ;
+        setDescriptionProduct(product.descripcion) ;
+        setImg(product.urlImage)
+    };
+
     return (
-        <div className="container-items">
-            {data.map(product => (
-                <div className="item" key={product.id}>
-                    <figure>
-                        <img src={product.urlImage} alt={product.title} />
-                    </figure>
-                    <div className="info-product">
-                        <h2>{product.title}</h2>
-                        <p className="price">${product.price}</p>
-                        <button className="btn-add-cart" onClick={() => onAddProduct(product)}>Añadir al
-                            carrito</button>
+        <>
+            <div className="container-items">
+                {data.map(product => (
+                    <div className="item" key={product.id}>
+                        <figure>
+                            <img src={product.urlImage} alt={product.title}  onClick={ () => { onViewModal(product); handleShow()}} />
+                        </figure>
+                        <div className="info-product">
+                            <h2>{product.title}</h2>
+                            <p className="price">${product.price}</p>
+                            <button className="btn-add-cart" onClick={() => onAddProduct(product)}>Añadir al
+                                carrito</button>
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+
+            <Modal show={show} title={titleProduct} descripcion={descriptionProduct} img={img} handleClose={handleClose} />
+
+        </>
+
     );
 }
