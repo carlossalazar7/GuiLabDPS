@@ -1,0 +1,5 @@
+cd C:\Users\carlo\AppData\Local\Android\Sdk\emulator
+
+emulator -list-avds
+
+emulator -avd Pixel_3a_API_34_extension_level_7_x86_64
