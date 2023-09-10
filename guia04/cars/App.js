@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SafeAreaView, View, FlatList, Text } from 'react-native';
+import { SafeAreaView, Image, View, FlatList, Text } from 'react-native';
 import { styles } from './styles';
 import { DATA } from './src/data';
 
