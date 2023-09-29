@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, Image, View, Modal, Button, TouchableHighlight } from 'react-native';
 
 export default function App() {
+   const [modalVisibleplaya, setModalVisibleplaya] = useState(false);
   return (
     <>
       <ScrollView>
